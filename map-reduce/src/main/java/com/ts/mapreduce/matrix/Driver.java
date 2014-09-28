@@ -42,8 +42,8 @@ public class Driver extends Configured implements Tool {
 		protected void map(LongWritable key, Text value,
 				Mapper<LongWritable, Text, LongWritable, Text>.Context context)
 				throws IOException, InterruptedException {
-			LongWritable	keyM = new LongWritable(Long.parseLong(value.toString().split(""+keySeprator)[0]));
-			Text val = new Text(value.toString().split(""+keySeprator)[1]);
+			LongWritable	keyM = new LongWritable(Long.parseLong(value.toString().split(String.format("%c",keySeprator))[0]));
+			Text val = new Text(value.toString().split(String.format("%c",keySeprator))[1]);
 			context.write(keyM, val);
 		}
 	}
