@@ -1,6 +1,6 @@
 #!/bin/bash
 #########################################
-# Name of the Script        : ddl.sh
+# Name of the Script        : hbase.sh
 # No. of Input Parameters   : 2
 # Input Parameter accepted  : <command filepath> <table location in hbase> | e.g. createtables.sh /home/hadoop/ /home/hadoop/hbasem7/path/
 # Comment                   : This shell script run all the commands present in command file param $1.
