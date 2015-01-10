@@ -36,7 +36,7 @@ public class ColumnsCounter extends Configured implements Tool {
 
 	/**
 	 * 
-	 * Mapper that runs the count.
+	 * Mapper that emits the column family as key and value as qualifier.
 	 */
 
 	static class ColumnsMapper extends TableMapper<Text, NullWritable> {
@@ -59,7 +59,10 @@ public class ColumnsCounter extends Configured implements Tool {
 
 		}
 	}
-
+	/**
+	 * 
+	 * Reducer that returns the column family with all qualifier.
+	 */
 	static class ColumnsReducer extends Reducer<Text, NullWritable, Text, NullWritable> {
 
 		public void reduce(Text key, Iterable<NullWritable> values, Context context) throws IOException,
@@ -194,9 +197,7 @@ public class ColumnsCounter extends Configured implements Tool {
 	/**
 	 * 
 	 * Main entry point.
-	 * 
-	 *
-	 * 
+
 	 * @param args
 	 *            The command line parameters.
 	 * 
