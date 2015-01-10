@@ -26,7 +26,7 @@ import org.apache.hadoop.util.ToolRunner;
 
 /**
  * 
- * A job with a just a map-reduce phase to print & count column qualifiers.
+ * A job with a just a map-reduce phase to fetch all column qualifiers.
  */
 
 public class ColumnsCounter extends Configured implements Tool {
@@ -45,7 +45,7 @@ public class ColumnsCounter extends Configured implements Tool {
 		public void map(ImmutableBytesWritable row, Result values, Context context) throws IOException,
 				InterruptedException {
 
-			// emit every combination on column family and qualifiers
+			// emit every combination of column family and qualifiers
 			for (Entry<byte[], NavigableMap<byte[], byte[]>> columnFamilyMap : values.getNoVersionMap().entrySet()) {
 				for (Entry<byte[], byte[]> entry : columnFamilyMap.getValue().entrySet()) {
 
@@ -74,9 +74,6 @@ public class ColumnsCounter extends Configured implements Tool {
 	/**
 	 * 
 	 * Sets up the actual job.
-	 * 
-	 *
-	 * 
 	 * @param conf
 	 *            The current configuration.
 	 * 
@@ -174,7 +171,7 @@ public class ColumnsCounter extends Configured implements Tool {
 
 		String[] otherArgs = new GenericOptionsParser(getConf(), args).getRemainingArgs();
 
-		if (otherArgs.length < 1) {
+		if (otherArgs.length < 2) {
 
 			printUsage("Wrong number of parameters: " + args.length);
 
